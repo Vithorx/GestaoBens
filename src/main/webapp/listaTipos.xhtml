@@ -20,22 +20,22 @@
             <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank">
                 <p:outputLabel for="nome" value="Nome:"/>
                 <p:inputText id="nome" value="#{tipoProdutoBean.tipoProduto.nome}" required="true" label="Nome"/>
-                <p:commandButton value="Salvar" actionListener="#{tipoProdutoBean.salvar}" update="formTipos:tabelaTipos formTipos:messages @form"/>
+                <p:commandButton value="Salvar" actionListener="#{tipoProdutoBean.salvar}" process="@this" update="formTipos:tabelaTipos formTipos:messages @form"/>
             </p:panelGrid>
         </p:panel>
         <p:panel header="Pesquisar Tipos" style="margin-bottom:20px;">
             <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank">
                 <p:outputLabel for="termoPesquisa" value="Nome do Tipo:"/>
                 <p:inputText id="termoPesquisa" value="#{tipoProdutoBean.termoPesquisa}" />
-                <p:commandButton value="Pesquisar" actionListener="#{tipoProdutoBean.pesquisar}" update="formTipos:tabelaTipos"/>
+                <p:commandButton value="Pesquisar" actionListener="#{tipoProdutoBean.pesquisar}" process="@this" update="formTipos:tabelaTipos"/>
             </p:panelGrid>
         </p:panel>
         <p:dataTable id="tabelaTipos" var="tipo" value="#{tipoProdutoBean.tipos}" paginator="true" rows="10">
             <p:column headerText="ID" sortBy="#{tipo.id}"><h:outputText value="#{tipo.id}" /></p:column>
             <p:column headerText="Nome" sortBy="#{tipo.nome}"><h:outputText value="#{tipo.nome}" /></p:column>
             <p:column headerText="Ações" style="width:100px; text-align: center">
-                <p:commandButton icon="pi pi-pencil" actionListener="#{tipoProdutoBean.editar(tipo)}" update="@form" styleClass="rounded-button ui-button-warning"/>
-                <p:commandButton icon="pi pi-trash" actionListener="#{tipoProdutoBean.remover(tipo)}" update="formTipos:tabelaTipos formTipos:messages" styleClass="rounded-button ui-button-danger">
+                <p:commandButton icon="pi pi-pencil" actionListener="#{tipoProdutoBean.editar(tipo)}"  process="@this" update="@form" styleClass="rounded-button ui-button-warning"/>
+                <p:commandButton icon="pi pi-trash" actionListener="#{tipoProdutoBean.remover(tipo)}"  process="@this" update="formTipos:tabelaTipos formTipos:messages" styleClass="rounded-button ui-button-danger">
                     <p:confirm header="Confirmação" message="Deseja realmente remover?" icon="pi pi-exclamation-triangle"/>
                 </p:commandButton>
             </p:column>

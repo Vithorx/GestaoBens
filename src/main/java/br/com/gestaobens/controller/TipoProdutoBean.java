@@ -9,8 +9,8 @@ import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.ejb.EJB;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Named
 @ViewScoped
 public class TipoProdutoBean implements Serializable {
-    @Inject
+    @EJB
     private TipoProdutoDAO tipoProdutoDAO;
     private TipoProduto tipoProduto;
     private List<TipoProduto> tipos;

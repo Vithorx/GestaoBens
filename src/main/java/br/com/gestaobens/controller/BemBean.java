@@ -11,8 +11,8 @@ import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.ejb.EJB;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,10 +26,10 @@ import java.util.List;
 @ViewScoped
 public class BemBean implements Serializable {
 
-    @Inject
+    @EJB
     private BemDAO bemDAO;
 
-    @Inject
+    @EJB
     private TipoProdutoDAO tipoProdutoDAO;
 
     private Bem bem;

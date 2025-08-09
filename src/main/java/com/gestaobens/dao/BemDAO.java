@@ -32,10 +32,10 @@ public class BemDAO {
         }
     }
     public List<Bem> listarTodos(){
-         return em.createQuery("SELECT b FROM Bem b JOIN FETCH b.tipoProduto ORDER BY b.nomeProduto", Bem.class).getResultList();
+         return em.createQuery("SELECT b FROM Bem b JOIN FETCH b.tipoProduto ORDER BY b.nome", Bem.class).getResultList();
     }
     public List<Bem> pesquisarPorNome(String nome){
-        return em.createQuery("SELECT b FROM Bem b JOIN FETCH b.tipoProduto WHERE lower(b.nomeProduto) LIKE :nome ORDER BY b.nomeProduto",Bem.class).setParameter("nome","%"+nome.toLowerCase()+"%").getResultList();
+        return em.createQuery("SELECT b FROM Bem b JOIN FETCH b.tipoProduto WHERE lower(b.nomeProduto) LIKE :nome ORDER BY b.nome",Bem.class).setParameter("nome","%"+nome.toLowerCase()+"%").getResultList();
         
     }
 }

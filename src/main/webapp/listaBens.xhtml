@@ -54,7 +54,7 @@
             </p:panelGrid>
         </p:panel>
 
-        <p:dataTable id="tabelaBens" var="bem" value="#{bemBean.bens}" paginator="true" rows="10">
+        <p:dataTable id="tabelaBens" var="bem" value="#{bemBean.bens}" paginator="true" rows="10" emptyMessage="Nenhum bem encontrado com o critério de pesquisa informado.">
             <p:column headerText="ID" sortBy="#{bem.id}"><h:outputText value="#{bem.id}" /></p:column>
             <p:column headerText="Nome" sortBy="#{bem.nomeProduto}"><h:outputText value="#{bem.nomeProduto}" /></p:column>
             <p:column headerText="Tipo" sortBy="#{bem.tipoProduto.nome}"><h:outputText value="#{bem.tipoProduto.nome}" /></p:column>

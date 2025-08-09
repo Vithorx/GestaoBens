@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gestao.controller;
-import com.gestaobens.dao.TipoProdutoDAO;
-import com.gestaobens.model.TipoProduto;
+package br.com.gestaobens.controller;
+import br.com.gestaobens.dao.TipoProdutoDAO;
+import br.com.gestaobens.model.TipoProduto;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -31,11 +31,12 @@ public class TipoProdutoBean implements Serializable {
         novo();
         carregarTipos();
     }
-    public void novo() { 
+    public void novo() {
         tipoProduto = new TipoProduto(); 
     }
     public void carregarTipos() { 
-        tipos = tipoProdutoDAO.listarTodos(); }
+        tipos = tipoProdutoDAO.listarTodos(); 
+    }
     public void salvar() {
         try {
             if (tipoProduto.getId() == null) tipoProdutoDAO.salvar(tipoProduto);
@@ -47,7 +48,7 @@ public class TipoProdutoBean implements Serializable {
             addMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Já existe um tipo com este nome.");
         }
     }
-    public void editar(TipoProduto tipo) { 
+    public void editar(TipoProduto tipo) {
         this.tipoProduto = tipo; 
     }
     public void remover(TipoProduto tipo) {

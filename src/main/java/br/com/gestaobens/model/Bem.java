@@ -2,59 +2,58 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gestaobens.model;
+package br.com.gestaobens.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
 import jakarta.persistence.*;
 
-
 /**
  *
  * @author vitho
  */
 @Entity
-@Table(name = "bem")
-public class Bem implements Serializable{
+@Table(name = "bens")
+public class Bem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "nome",nullable = false)
-    private String nome;
-    
+
+    @Column(name = "nome_produto", nullable = false)
+    private String nomeProduto; 
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "tipo_produto_id")
     private TipoProduto tipoProduto;
-    
-    @Column(name = "preco_compra",nullable = false)
+
+    @Column(name = "preco_compra", nullable = false)
     private BigDecimal precoCompra;
-    
+
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_compra",nullable = false)
+    @Column(name = "data_compra", nullable = false)
     private Date dataCompra;
-    
-    @Column(name = "vida_util_anos",nullable = false)
+
+    @Column(name = "vida_util_anos", nullable = false)
     private int vidaUtilAnos;
-    
-    @Column(name = "valor_residual",nullable = false)
+
+    @Column(name = "valor_residual")
     private BigDecimal valorResidual;
-    
+
     @Transient
-    public BigDecimal getDepreciacaoAnual(){
-        if(precoCompra == null || vidaUtilAnos <= 0){
+    public BigDecimal getDepreciacaoAnual() {
+        if (precoCompra == null || vidaUtilAnos <= 0) {
             return BigDecimal.ZERO;
         }
         BigDecimal valorResidualReal = (valorResidual != null) ? valorResidual : BigDecimal.ZERO;
         BigDecimal baseCalculo = precoCompra.subtract(valorResidualReal);
-        if(baseCalculo.compareTo(BigDecimal.ZERO) < 0){
+        if (baseCalculo.compareTo(BigDecimal.ZERO) < 0) {
             return BigDecimal.ZERO;
         }
-        return baseCalculo.divide(new BigDecimal(vidaUtilAnos),2,RoundingMode.HALF_UP);         
+        return baseCalculo.divide(new BigDecimal(vidaUtilAnos), 2, RoundingMode.HALF_UP);
     }
-    //Getters e Setters
-
+    
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -63,12 +62,12 @@ public class Bem implements Serializable{
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public TipoProduto getTipoProduto() {
@@ -112,3 +111,4 @@ public class Bem implements Serializable{
     }
     
 }
+

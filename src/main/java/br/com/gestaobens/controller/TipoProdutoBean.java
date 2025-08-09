@@ -25,6 +25,7 @@ public class TipoProdutoBean implements Serializable {
     private TipoProdutoDAO tipoProdutoDAO;
     private TipoProduto tipoProduto;
     private List<TipoProduto> tipos;
+    private String termoPesquisa;
 
     @PostConstruct
     public void init() {
@@ -60,11 +61,26 @@ public class TipoProdutoBean implements Serializable {
             addMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Não é possível remover. Este tipo está sendo usado por um bem.");
         }
     }
+    public void pesquisar() {
+        if (termoPesquisa == null || termoPesquisa.trim().isEmpty()) {
+        carregarTipos();
+        } else {
+            tipos = tipoProdutoDAO.pesquisarPorNome(termoPesquisa);
+        }
+    }
     private void addMessage(FacesMessage.Severity severity, String summary, String detail) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, summary, detail));
     }
     //Getters e Setters
 
+    public String getTermoPesquisa() {
+        return termoPesquisa;
+    }
+
+    public void setTermoPesquisa(String termoPesquisa) {
+        this.termoPesquisa = termoPesquisa;
+    }
+    
     public TipoProdutoDAO getTipoProdutoDAO() {
         return tipoProdutoDAO;
     }

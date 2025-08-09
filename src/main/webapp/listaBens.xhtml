@@ -45,6 +45,14 @@
 
             <p:commandButton value="Salvar" actionListener="#{bemBean.salvar}" update="formBens:tabelaBens formBens:messages @form" style="margin-top: 10px;"/>
         </p:panel>
+        
+        <p:panel header="Pesquisar Bens" style="margin-bottom:20px;">
+            <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:outputLabel for="termoPesquisa" value="Nome do Bem:"/>
+                <p:inputText id="termoPesquisa" value="#{bemBean.termoPesquisa}" />
+                <p:commandButton value="Pesquisar" actionListener="#{bemBean.pesquisar}" update="formBens:tabelaBens"/>
+            </p:panelGrid>
+        </p:panel>
 
         <p:dataTable id="tabelaBens" var="bem" value="#{bemBean.bens}" paginator="true" rows="10">
             <p:column headerText="ID" sortBy="#{bem.id}"><h:outputText value="#{bem.id}" /></p:column>

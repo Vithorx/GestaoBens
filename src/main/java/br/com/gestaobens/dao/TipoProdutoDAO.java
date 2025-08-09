@@ -31,4 +31,7 @@ public class TipoProdutoDAO {
     public List<TipoProduto> listarTodos() {
         return em.createQuery("SELECT t FROM TipoProduto t ORDER BY t.nome", TipoProduto.class).getResultList();
     }
+    public List<TipoProduto> pesquisarPorNome(String nome) {
+        return em.createQuery("SELECT t FROM TipoProduto t WHERE lower(t.nome) LIKE :nome ORDER BY t.nome", TipoProduto.class).setParameter("nome", "%" + nome.toLowerCase() + "%").getResultList();
+    }
 }

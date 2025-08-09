@@ -23,6 +23,13 @@
                 <p:commandButton value="Salvar" actionListener="#{tipoProdutoBean.salvar}" update="formTipos:tabelaTipos formTipos:messages @form"/>
             </p:panelGrid>
         </p:panel>
+        <p:panel header="Pesquisar Tipos" style="margin-bottom:20px;">
+            <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:outputLabel for="termoPesquisa" value="Nome do Tipo:"/>
+                <p:inputText id="termoPesquisa" value="#{tipoProdutoBean.termoPesquisa}" />
+                <p:commandButton value="Pesquisar" actionListener="#{tipoProdutoBean.pesquisar}" update="formTipos:tabelaTipos"/>
+            </p:panelGrid>
+        </p:panel>
         <p:dataTable id="tabelaTipos" var="tipo" value="#{tipoProdutoBean.tipos}" paginator="true" rows="10">
             <p:column headerText="ID" sortBy="#{tipo.id}"><h:outputText value="#{tipo.id}" /></p:column>
             <p:column headerText="Nome" sortBy="#{tipo.nome}"><h:outputText value="#{tipo.nome}" /></p:column>

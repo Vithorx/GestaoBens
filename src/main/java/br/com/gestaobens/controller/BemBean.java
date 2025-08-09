@@ -35,6 +35,7 @@ public class BemBean implements Serializable {
     private Bem bem;
     private List<Bem> bens;
     private List<TipoProduto> tiposDeProduto;
+    private String termoPesquisa;
 
     @PostConstruct
     public void init() {
@@ -112,11 +113,27 @@ public class BemBean implements Serializable {
             e.printStackTrace();
         }
     }
+    public void pesquisar(){
+        if(termoPesquisa == null || termoPesquisa.trim().isEmpty()){
+            carregarBens();
+        }else{
+            bens = bemDAO.pesquisarPorNome(termoPesquisa);
+        }
+    }
 
     private void addMessage(FacesMessage.Severity severity, String summary, String detail) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, summary, detail));
     }
     //Getters e Setters
+
+    public String getTermoPesquisa() {
+        return termoPesquisa;
+    }
+
+    public void setTermoPesquisa(String termoPesquisa) {
+        this.termoPesquisa = termoPesquisa;
+    }
+    
     public BemDAO getBemDAO() {
         return bemDAO;
     }

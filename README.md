@@ -1,19 +1,14 @@
 # Sistema de Gestão de Bens
+Este é um sistema de gestao de controle de bens.O sistema permite o cadastro, pesquisa, edição e deletar bens assim como seus tipos e tambem calcula depreciação anual dos bens.
 
-Este é um projeto de um Sistema de Gestão de Controle de Bens, desenvolvido como parte de um processo de avaliação técnica. O sistema permite o cadastro, pesquisa, edição e exclusão de bens e seus respectivos tipos, além de calcular a depreciação anual dos bens.
-
-## Estrutura do Projeto
-
-O projeto segue uma arquitetura baseada em camadas, comum em aplicações Jakarta EE, para separar as responsabilidades:
-
+## Estrutura do projeto
+O projeto segue uma arquitetura em camadas, comum em projetos que utilizam Jakarta EE, para dividir as responsabilidades:
 -   `src/main/java/br/com/gestaobens/model`: Contém as classes de entidade JPA (`Bem`, `TipoProduto`) que representam as tabelas do banco de dados.
 -   `src/main/java/br/com/gestaobens/dao`: Contém as classes DAO (Data Access Object) responsáveis por toda a comunicação com o banco de dados (salvar, buscar, etc.), utilizando o `EntityManager` do JPA.
 -   `src/main/java/br/com/gestaobens/controller`: Contém os Managed Beans do JSF (`BemBean`, `TipoProdutoBean`), que servem como controladores, gerenciando o estado da tela e orquestrando as ações do usuário.
 -   `src/main/webapp`: Contém as telas da aplicação, desenvolvidas com JSF e PrimeFaces (`.xhtml`), além dos arquivos de configuração web como `web.xml` e `beans.xml`.
 -   `src/main/resources`: Contém o arquivo de configuração de persistência do JPA (`persistence.xml`).
-
-## Tecnologias Utilizadas
-
+## Tecnologias utilizadas:
 -   **Linguagem:** Java 17
 -   **Servidor de Aplicação:** GlassFish 7
 -   **Banco de Dados:** PostgreSQL
@@ -27,18 +22,10 @@ O projeto segue uma arquitetura baseada em camadas, comum em aplicações Jakart
     -   OmniFaces 4.3
 -   **Build:** Apache Maven
 
-## Passos para Configuração e Execução
-
-#### Pré-requisitos
--   JDK 17 ou superior
--   Apache Maven 3.8+
--   Servidor GlassFish 7
--   Banco de Dados PostgreSQL
-
-#### 1. Configuração do Banco de Dados
+#### 1.Configuração do banco de dados
 É necessário ter uma instância do PostgreSQL rodando. As tabelas `tipos_produto` e `bens` serão criadas e gerenciadas pela aplicação ou podem ser criadas manualmente.
 
-#### 2. Configuração do DataSource no GlassFish
+#### 2.Configuração do DataSource no GlassFish
 No painel de administração do GlassFish (`http://localhost:4848`):
 1.  Crie um **JDBC Connection Pool** apontando para o seu banco de dados PostgreSQL.
 2.  Crie um **JDBC Resource** com o nome JNDI **`jdbc/gestao_bens_ds`**. Este é o nome que a aplicação utiliza para encontrar o banco de dados, conforme definido no arquivo `persistence.xml`.
